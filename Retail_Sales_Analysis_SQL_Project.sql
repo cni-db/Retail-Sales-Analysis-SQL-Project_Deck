@@ -170,7 +170,7 @@ FROM (
 	AS shift_sale
 GROUP BY sale_shift;
 
--- Data Analysis & Business Key Problems on Beauty category
+-- Data Analysis & Business Key Problems in the Beauty category
 
 -- Write a SQL query to find out the average profit of each category.
 SELECT 
@@ -180,7 +180,7 @@ FROM Retail_Sales
 GROUP BY category
 ORDER BY avg_profit DESC;
 
---Write a SQL query to find the average age of customers of each gender that purchased from Beauty category.
+--Write a SQL query to find the average age of customers of each gender that purchased from the Beauty category.
 SELECT 
 	gender,
 	AVG(age) AS avg_age
@@ -188,12 +188,8 @@ FROM Retail_Sales
 WHERE category = 'Beauty'
 GROUP BY gender;
 
---Write a SQL query to find the average age of the customer who spend the most money on Beauty category for each gender.
-SELECT *
-FROM Retail_Sales
-WHERE category = 'Beauty';
 
---Write a SQL query to find out how much customer from each age groups have spend money on Beauty category.
+--Write an SQL query to find out how much customers from each age group have spent money on the Beauty category.
 SELECT 
 	age_group,
 	COUNT(age) AS cust_count
@@ -265,7 +261,7 @@ PIVOT (
 	SUM(cust_count) FOR gender IN (female,male)
 	) AS Pivot_beauty;
 
---Based on the above query, write a SQL query to find the total spending of each age group of each gender in Beauty category.
+--Based on the above query, write an SQL query to find the total spending of each age group of each gender in the  Beauty category.
 WITH sale_by_age_group AS
 	(
 	SELECT 
@@ -318,6 +314,7 @@ PIVOT (
 	SUM(total_amount) FOR gender IN (female,male)
 	) AS Pivot_beauty_amount;
 
+-- Write an SQL query to find the number of customers from each gender that make purchases during the sale shift in the Beauty category.
 SELECT DISTINCT sale_shift, 
 	gender,
 	COUNT(*) AS total_order
